@@ -7,6 +7,8 @@ class Car{
 
         this.speed = 0;
         this.acceleration = 0.2;
+        this.maxSpeed = 3;
+        this.friction = 0.05;
 
         this.controls = new Controls();
     }
@@ -18,7 +20,22 @@ class Car{
         if(this.controls.reverse){
             this.speed-=this.acceleration;
         }
-        this.y -= this.speed;
+        if(this.speed>this.maxSpeed){
+            this.speed = this.maxSpeed;
+        }
+        if(this.speed<-this.maxSpeed/2){
+            this.speed = -this.maxSpeed/2;
+        }
+        if(this.speed>0){
+            this.speed-=this.friction;
+        }
+        if(this.speed<0){
+            this.speed+=this.friction;
+        }
+        if(Math.abs(this.speed)<this.friction){
+            this.speed = 0;
+        }
+        this.y-=this.speed;
         if(this.controls.left){
             this.x-=2;
         }

@@ -1,4 +1,4 @@
-class controls{
+class Controls{
     constructor(){
         this.forward = false,
         this.left = false,
@@ -25,7 +25,7 @@ class controls{
             }
             console.table(this);
         }
-        ocument.onkeyup=(event)=>{
+        document.onkeyup=(event)=>{
             switch(event.key){
                 case "ArrowLeft":
                     this.left = false;

@@ -10,11 +10,16 @@ class Car{
         this.maxSpeed = 2.5;
         this.friction = 0.05;
         this.angle = 0;
+
+        this.sensor=new Sensor(this);
+
         this.controls = new Controls();
     }
 
-    update(){
+    update(roadBorders){
+    
         this.#move();
+        this.sensor.update(roadBorders);
     }
     #move(){
         //box2d library can be used
@@ -67,5 +72,7 @@ class Car{
         );
         ctx.fill();
         ctx.restore();
+
+        this.sensor.draw(ctx);
     }
 }
